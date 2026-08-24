@@ -6,14 +6,17 @@ Complete guide to all documentation for the Climate Risk Assessment project.
 
 ## Quick Navigation
 
-### I'm New to the Project
-Start with: **[../CLAUDE.md](../CLAUDE.md)** → **[reference-principles.md](reference-principles.md)** → **[task-breakdown.md](task-breakdown.md)**
+### I'm a Stakeholder/Manager (5-10 mins)
+Start with: **[SOLUTION_ARCHITECTURE.md](SOLUTION_ARCHITECTURE.md)** ← Executive overview, ROI, deployment models
+
+### I'm New to the Project (Technical Team)
+Start with: **[../CLAUDE.md](../CLAUDE.md)** → **[ARCHITECTURE_HIGH_LEVEL.md](ARCHITECTURE_HIGH_LEVEL.md)** → **[reference-principles.md](reference-principles.md)**
 
 ### I Want to Run the System
 Start with: **[operations-guide.md](operations-guide.md)** → **[api-reference.md](api-reference.md)**
 
 ### I Want to Extend the System
-Start with: **[future-roadmap.md](future-roadmap.md)** → **[web-ui-llm-implementation-plan.md](web-ui-llm-implementation-plan.md)**
+Start with: **[future-roadmap.md](future-roadmap.md)** → **[ARCHITECTURE_LOW_LEVEL.md](ARCHITECTURE_LOW_LEVEL.md)** → **[reference-principles.md](reference-principles.md)**
 
 ### I Want to Understand How It Was Built
 Start with: **[PHASE_1_UI_COMPLETION.md](PHASE_1_UI_COMPLETION.md)** → **[PHASE_2_LLM_COMPLETION.md](PHASE_2_LLM_COMPLETION.md)** → **[PHASE_3_COMPLETION.md](PHASE_3_COMPLETION.md)**
@@ -26,16 +29,19 @@ Start with: **[PHASE_1_UI_COMPLETION.md](PHASE_1_UI_COMPLETION.md)** → **[PHAS
 
 | File | Purpose | Audience |
 |------|---------|----------|
+| [SOLUTION_ARCHITECTURE.md](SOLUTION_ARCHITECTURE.md) | Executive overview, value prop, deployment models (NEW) | Stakeholders, Managers, Product Leads |
 | [../CLAUDE.md](../CLAUDE.md) | Project vision, architecture, and structure | Everyone |
 | [reference-principles.md](reference-principles.md) | Design and development principles | Architects, Developers |
 | [task-breakdown.md](task-breakdown.md) | All 35 tasks across 6 phases with status | Project Managers, Developers |
-| [future-roadmap.md](future-roadmap.md) | What's next after Phase 3 | Product, Engineering Leads |
+| [future-roadmap.md](future-roadmap.md) | What's next after Phase 6 (Phase 7-9 roadmap) | Product, Engineering Leads |
 
 ### Architecture & Design
 
 | File | Purpose | Audience |
 |------|---------|----------|
-| [implementation-plan.md](implementation-plan.md) | Detailed backend system design (Phases 1-6) | Developers, Architects |
+| [ARCHITECTURE_HIGH_LEVEL.md](ARCHITECTURE_HIGH_LEVEL.md) | 10,000-foot system overview with data flows (NEW) | Everyone |
+| [ARCHITECTURE_LOW_LEVEL.md](ARCHITECTURE_LOW_LEVEL.md) | Component details, data structures, request flows (NEW) | Developers, Architects |
+| [implementation-plan.md](implementation-plan.md) | Original backend design (Phases 1-6) | Reference |
 | [alert-lifecycle-design.md](alert-lifecycle-design.md) | Alert generation, thresholds, and lifecycle | Developers |
 | [scaling-design.md](scaling-design.md) | Performance optimization and scaling | Architects, DevOps |
 
@@ -84,10 +90,10 @@ Start with: **[PHASE_1_UI_COMPLETION.md](PHASE_1_UI_COMPLETION.md)** → **[PHAS
 ## Reading Paths by Role
 
 ### Product Manager
-1. [../CLAUDE.md](../CLAUDE.md) — Vision and problem statement
-2. [task-breakdown.md](task-breakdown.md) — Task status and progress
-3. [PHASE_1_UI_COMPLETION.md](PHASE_1_UI_COMPLETION.md) — What was built
-4. [future-roadmap.md](future-roadmap.md) — What's next
+1. [SOLUTION_ARCHITECTURE.md](SOLUTION_ARCHITECTURE.md) — Executive overview & value prop ⭐ START HERE
+2. [../CLAUDE.md](../CLAUDE.md) — Vision and problem statement
+3. [task-breakdown.md](task-breakdown.md) — Task status and progress (all 35 complete)
+4. [future-roadmap.md](future-roadmap.md) — Phase 7-9 roadmap & effort estimates
 
 ### Backend Developer
 1. [../CLAUDE.md](../CLAUDE.md) — Architecture overview
@@ -128,36 +134,43 @@ Start with: **[PHASE_1_UI_COMPLETION.md](PHASE_1_UI_COMPLETION.md)** → **[PHAS
 
 ```
 docs/
-├── INDEX.md                                 # You are here
-├── CLAUDE.md                                # Back in root (project instructions)
-├── README.md                                # Back in root
+├── INDEX.md                                     # Navigation hub (you are here)
+├── SOLUTION_ARCHITECTURE.md ✨ NEW              # Executive overview, value prop, deployment
+│
+├── ARCHITECTURE_HIGH_LEVEL.md ✨ NEW            # System overview, layers, data flows
+├── ARCHITECTURE_LOW_LEVEL.md ✨ NEW             # Component details, algorithms
+├── DOCUMENTATION_UPDATE_SUMMARY.md ✨ NEW       # What changed and why
 │
 ├── Project Overview & Strategy
-│   ├── reference-principles.md              # Design principles
-│   ├── task-breakdown.md                    # All 35 tasks (Phases 1-6)
-│   ├── future-roadmap.md                    # Post-Phase 3 roadmap
-│   └── implementation-plan.md               # Backend system design
+│   ├── reference-principles.md                  # Design principles
+│   ├── task-breakdown.md                        # All 35 tasks (Phases 1-6)
+│   ├── future-roadmap.md                        # Phase 7-9 roadmap
+│   └── implementation-plan.md                   # Original backend design (historical)
 │
 ├── Phase Completion Summaries
-│   ├── PHASE_1_UI_COMPLETION.md             # Streamlit UI foundation
-│   ├── PHASE_2_LLM_COMPLETION.md            # Claude integration
-│   └── PHASE_3_COMPLETION.md                # Polish & optimization
+│   ├── PHASE_1_UI_COMPLETION.md                 # Streamlit UI foundation
+│   ├── PHASE_2_LLM_COMPLETION.md                # Claude integration
+│   └── PHASE_3_COMPLETION.md                    # Polish & optimization
 │
 ├── Architecture & Design
-│   ├── alert-lifecycle-design.md            # Alert generation and lifecycle
-│   ├── scaling-design.md                    # Performance and scaling
-│   └── web-ui-llm-implementation-plan.md    # Original Phase 6 plan (historical)
+│   ├── alert-lifecycle-design.md                # Alert generation and lifecycle
+│   ├── scaling-design.md                        # Performance and scaling
+│   └── web-ui-llm-implementation-plan.md        # Original Phase 6 plan (historical)
 │
 ├── User Guides & References
-│   ├── operations-guide.md                  # Installation, configuration, running
-│   ├── api-reference.md                     # Class/function reference
-│   ├── responsive-design.md                 # Mobile/responsive design
-│   ├── DATABASE_USAGE_GUIDE.md              # SQL and data access
-│   └── DATABASE_TOOLS_SUMMARY.md            # DAO class summary
+│   ├── operations-guide.md                      # Installation, configuration, running
+│   ├── api-reference.md                         # Class/function reference
+│   ├── GIT_SETUP.md                             # Git version control setup
+│   ├── responsive-design.md                     # Mobile/responsive design
+│   ├── DATABASE_USAGE_GUIDE.md                  # SQL and data access
+│   └── DATABASE_TOOLS_SUMMARY.md                # DAO class summary
 │
-└── Back in Root
-    ├── UI_QUICKSTART.md                     # Get dashboard running (5 min)
-    └── PROJECT_STRUCTURE.md                 # Directory structure
+└── Back in Root (../)
+    ├── CLAUDE.md                                # Project vision & instructions
+    ├── README.md                                # Project overview
+    ├── UI_QUICKSTART.md                         # Get dashboard running (5 min)
+    ├── PROJECT_STRUCTURE.md                     # Directory structure
+    └── REPOSITORY_CLEANUP.md                    # Cleanup summary
 ```
 
 ---

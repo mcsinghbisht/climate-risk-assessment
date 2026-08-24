@@ -32,13 +32,18 @@ A continuous monitoring system that:
 
 ## Documentation
 
-**Start Here:**
+**For Stakeholders/Managers (Quick Overview):**
+- [docs/SOLUTION_ARCHITECTURE.md](docs/SOLUTION_ARCHITECTURE.md) — Executive overview, value prop, deployment models, ROI
+
+**Start Here (Technical):**
 - [CLAUDE.md](CLAUDE.md) — Project vision, architecture, structure, and development phases
 
 **Architecture & Design:**
+- [docs/ARCHITECTURE_HIGH_LEVEL.md](docs/ARCHITECTURE_HIGH_LEVEL.md) — System overview, layers, data flows
+- [docs/ARCHITECTURE_LOW_LEVEL.md](docs/ARCHITECTURE_LOW_LEVEL.md) — Component details, algorithms, request flows
 - [docs/reference-principles.md](docs/reference-principles.md) — Design principles guiding development
 - [docs/task-breakdown.md](docs/task-breakdown.md) — All 35 tasks across 6 phases with completion status
-- [docs/implementation-plan.md](docs/implementation-plan.md) — Detailed backend implementation strategy
+- [docs/implementation-plan.md](docs/implementation-plan.md) — Original backend implementation strategy
 
 **Phase Completion Summaries:**
 - [docs/PHASE_1_UI_COMPLETION.md](docs/PHASE_1_UI_COMPLETION.md) — Web UI foundation (Streamlit pages & components)
