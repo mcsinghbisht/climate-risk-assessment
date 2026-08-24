@@ -1,0 +1,183 @@
+================================================================================
+                    DATABASE TOOLS - QUICK REFERENCE
+================================================================================
+
+ACTIVATE VIRTUAL ENVIRONMENT (Do this first)
+  .\venv\Scripts\Activate.ps1
+
+================================================================================
+OPTION 1: QUICK QUERY (Fastest for one-off queries)
+================================================================================
+
+Command-line query:
+  python query.py "SELECT COUNT(*) FROM properties"
+  python query.py "SELECT name FROM sqlite_master WHERE type='table'"
+  python query.py "SELECT version FROM schema_version"
+
+Interactive mode:
+  python query.py
+  SQL> SELECT COUNT(*) FROM properties
+  SQL> SELECT * FROM schema_version
+  SQL> exit
+
+Common examples:
+  # Count all rows in each table
+  python query.py "SELECT 'properties' as table_name, COUNT(*) FROM properties UNION ALL SELECT 'alerts', COUNT(*) FROM alerts"
+
+  # List all tables
+  python query.py "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
+
+  # Show table schema
+  python query.py "PRAGMA table_info(properties)"
+
+  # Show all indexes
+  python query.py "SELECT name, tbl_name FROM sqlite_master WHERE type='index'"
+
+================================================================================
+OPTION 2: INTERACTIVE INSPECTOR (Best for exploration)
+================================================================================
+
+Start inspector:
+  python db_inspector.py
+
+Menu options (choose 1-6):
+  1. Show database info
+  2. List all tables (with row counts)
+  3. Show table schema (enter table name)
+  4. Run custom SQL query
+  5. Run example queries (8 pre-built)
+  6. Exit
+
+This is the BEST choice for:
+  - Learning the schema
+  - Exploring data
+  - Testing complex queries
+  - Understanding relationships
+
+================================================================================
+OPTION 3: RUN EXAMPLE QUERIES
+================================================================================
+
+Run all examples at once:
+  python run_example_queries.py
+
+Shows:
+  1. List all tables
+  2. Schema version info
+  3. Properties by state
+  4. Sample properties
+  5. Hazard data sources
+  6. Risk statistics
+  7. Alerts summary
+  8. Table sizes
+
+================================================================================
+OPTION 4: PYTHON API (For building code)
+================================================================================
+
+from src.database import get_db_connection
+
+conn = get_db_connection()
+cursor = conn.cursor()
+cursor.execute("SELECT COUNT(*) FROM properties")
+result = cursor.fetchone()[0]
+print(f"Total: {result}")
+conn.close()
+
+================================================================================
+COMMON QUERIES
+================================================================================
+
+Count rows in each table:
+  python query.py "SELECT 'properties', COUNT(*) FROM properties UNION ALL SELECT 'alerts', COUNT(*) FROM alerts"
+
+Show schema version:
+  python query.py "SELECT * FROM schema_version"
+
+List all tables:
+  python query.py "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
+
+Show table schema:
+  python query.py "PRAGMA table_info(properties)"
+
+Show all indexes:
+  python query.py "SELECT name FROM sqlite_master WHERE type='index' AND name NOT LIKE 'sqlite_%'"
+
+Show foreign keys:
+  python query.py "PRAGMA foreign_key_list(risk_assessments)"
+
+Show database file info:
+  python query.py "SELECT COUNT(*) as tables FROM sqlite_master WHERE type='table'"
+
+================================================================================
+DATABASE CURRENT STATUS
+================================================================================
+
+Database file: data/climate_risk.db (84 KB)
+Schema version: 1
+
+Tables created: 6
+  ✓ properties (0 rows)
+  ✓ risk_assessments (0 rows)
+  ✓ hazard_data (0 rows)
+  ✓ alerts (0 rows)
+  ✓ alert_history (0 rows)
+  ✓ schema_version (1 row)
+
+Indexes created: 11
+  ✓ idx_properties_state
+  ✓ idx_properties_county
+  ✓ idx_properties_coords
+  ✓ idx_risk_property
+  ✓ idx_risk_timestamp
+  ✓ idx_risk_level
+  ✓ idx_hazard_type
+  ✓ idx_hazard_coords
+  ✓ idx_hazard_timestamp
+  ✓ idx_alerts_property
+  ✓ idx_alerts_timestamp
+
+================================================================================
+RECOMMENDED WORKFLOW
+================================================================================
+
+1. Verify database is working:
+   python run_example_queries.py
+
+2. Quick lookup:
+   python query.py "SELECT COUNT(*) FROM properties"
+
+3. Explore schema:
+   python db_inspector.py
+
+4. Run complex queries:
+   python db_inspector.py
+   (then choose option 4 for custom SQL)
+
+5. Build application code:
+   from src.database import get_db_connection
+   ...
+
+================================================================================
+DOCUMENTATION
+================================================================================
+
+For detailed info, see:
+  - DATABASE_TOOLS_SUMMARY.md (this file overview)
+  - DATABASE_USAGE_GUIDE.md (common queries and examples)
+  - TASK_3_COMPLETION.md (database schema details)
+
+================================================================================
+NEXT TASK
+================================================================================
+
+Task 4: Create Utility Functions (Geospatial & Time)
+
+These will provide:
+  - Distance calculations
+  - Coordinate validation
+  - Timestamp utilities
+
+Database is ready! All tables created and verified. ✓
+
+================================================================================

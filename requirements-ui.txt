@@ -1,0 +1,19 @@
+# Web UI & LLM Layer Dependencies
+# Install with: pip install -r requirements-ui.txt
+
+# Core UI
+streamlit>=1.28.0
+streamlit-folium>=0.13.0
+
+# Visualization
+plotly>=5.17.0
+folium>=0.14.0
+
+# LLM & API
+anthropic>=0.15.0
+
+# SQL Validation
+sqlparse>=0.4.4
+
+# Existing project deps (for reference, already in requirements.txt)
+# pandas, numpy, geopandas, shapely, pyproj, sqlalchemy, requests, apscheduler, pytz, python-dotenv, pytest, pytest-cov, python-json-logger

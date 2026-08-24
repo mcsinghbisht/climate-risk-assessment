@@ -1,0 +1,114 @@
+{
+  "monitoring": {
+    "interval_minutes": 15,
+    "enabled": true
+  },
+  "risk_scoring": {
+    "wildfire_weights": {
+      "proximity": 0.4,
+      "wind": 0.3,
+      "intensity": 0.2,
+      "environment": 0.1
+    },
+    "flood_weights": {
+      "rainfall": 0.5,
+      "proximity": 0.2,
+      "floodplain": 0.2,
+      "saturation": 0.1
+    },
+    "overall_weights": {
+      "wildfire": 0.5,
+      "flood": 0.5
+    },
+    "risk_levels": {
+      "low_max": 25,
+      "medium_max": 50,
+      "high_max": 75
+    },
+    "critical_single_hazard_threshold": 85,
+    "wildfire_params": {
+      "proximity_max_km": 50,
+      "wind_speed_threshold_ms": 9.0,
+      "wind_max_reference_speed_ms": 20.0,
+      "historical_max_frp": 500.0,
+      "humidity_weight": 0.6,
+      "temperature_weight": 0.4,
+      "high_temp_threshold_c": 35.0
+    },
+    "flood_params": {
+      "proximity_max_km": 20,
+      "rainfall_max_accumulation_mm": 150.0,
+      "soil_saturation_rainfall_weight": 0.7,
+      "soil_saturation_humidity_weight": 0.3
+    }
+  },
+  "alerts": {
+    "wildfire_threshold": 70,
+    "wildfire_increase_threshold": 40,
+    "flood_threshold": 65,
+    "flood_increase_threshold": 30,
+    "portfolio_threshold_percent": 10,
+    "portfolio_resolution_hysteresis_percent": 2,
+    "alert_check_interval_minutes": 5,
+    "renotify_interval_minutes": 60,
+    "resolution_hysteresis": 10,
+    "stale_after_hours": 6
+  },
+  "data_sources": {
+    "nasa_firms": {
+      "enabled": true,
+      "api_key_env": "NASA_FIRMS_API_KEY",
+      "base_url": "https://firms.modaps.eosdis.nasa.gov/api/area/csv",
+      "sensor": "VIIRS_SNPP_NRT",
+      "days_lookback": 3,
+      "bounding_box_buffer_degrees": 0.5,
+      "calls_per_minute": 30
+    },
+    "openweather": {
+      "enabled": true,
+      "api_key_env": "OPENWEATHER_API_KEY",
+      "base_url": "https://api.openweathermap.org/data/2.5",
+      "units": "metric",
+      "calls_per_minute": 50
+    },
+    "usgs_water": {
+      "enabled": true,
+      "base_url": "https://waterservices.usgs.gov/nwis/iv",
+      "parameter_codes": "00060,00065",
+      "calls_per_minute": 30
+    }
+  },
+  "ingestion": {
+    "grid_cell_size_degrees": 0.5,
+    "freshness_minutes": 4
+  },
+  "database": {
+    "path": "data/climate_risk.db",
+    "backup_enabled": true,
+    "backup_interval_hours": 24
+  },
+  "portfolio": {
+    "total_properties": 100,
+    "hotspot_radius_km": 50,
+    "hotspot_min_properties": 3,
+    "hotspot_risk_threshold": 50
+  },
+  "app": {
+    "name": "Climate Risk Assessment",
+    "version": "0.1.0",
+    "environment": "development"
+  },
+  "llm": {
+    "enabled": true,
+    "provider": "anthropic",
+    "model": "claude-3-5-haiku-20241022",
+    "api_key_env": "ANTHROPIC_API_KEY",
+    "temperature": 0.7,
+    "max_tokens": 2048,
+    "curated_tools_only": true,
+    "sql_fallback_enabled": false,
+    "sql_timeout_seconds": 30,
+    "sql_max_rows": 1000,
+    "cache_explanations": true
+  }
+}

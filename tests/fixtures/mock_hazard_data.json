@@ -1,0 +1,37 @@
+{
+  "_comment": "Sample mock API response bodies for offline integration testing (Task 30). Shapes match the real NASA FIRMS (CSV), OpenWeatherMap (JSON), and USGS Water Services (JSON) response formats exactly, so DataNormalizer (Task 13) parses them identically to live data.",
+
+  "firms_csv_header": "latitude,longitude,bright_ti4,scan,track,acq_date,acq_time,satellite,instrument,confidence,version,bright_ti5,frp,daynight",
+  "firms_csv_row_active_fire": "34.0000,-118.0000,320.10,0.50,0.50,2026-08-03,1245,N,VIIRS,h,2.0NRT,290.00,300.0,D",
+
+  "openweather_hot_dry_windy_rainy": {
+    "main": {"temp": 40.0, "humidity": 15.0},
+    "wind": {"speed": 15.0, "deg": 180},
+    "rain": {"1h": 55.0},
+    "dt": 1754200000
+  },
+
+  "openweather_calm_no_rain": {
+    "main": {"temp": 20.0, "humidity": 60.0},
+    "wind": {"speed": 2.0, "deg": 0},
+    "dt": 1754200000
+  },
+
+  "usgs_gauge_response_template": {
+    "_comment": "dateTime is injected at test runtime (see build_usgs_response() in test_integration.py) since USGS readings older than 48h are filtered as stale - a fixed date here would eventually break as time passes.",
+    "value": {
+      "timeSeries": [
+        {
+          "sourceInfo": {
+            "siteName": "Mock River Gauge",
+            "geoLocation": {"geogLocation": {"latitude": "29.9511", "longitude": "-90.0715"}}
+          },
+          "variable": {"variableCode": [{"value": "00065"}]},
+          "values": [
+            {"value": [{"value": "3.2", "dateTime": "__RUNTIME_TIMESTAMP__"}]}
+          ]
+        }
+      ]
+    }
+  }
+}

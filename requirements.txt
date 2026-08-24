@@ -1,0 +1,33 @@
+# Climate Risk Assessment - Python Dependencies (MVP Core)
+# Streamlined for initial development
+# Last updated: 2026-07-19
+
+# Data Processing & Analysis
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Geospatial Operations
+geopandas>=0.13.0
+shapely>=2.0.0
+pyproj>=3.4.0
+
+# Database & ORM
+sqlalchemy>=2.0.0
+
+# HTTP Requests & APIs
+requests>=2.31.0
+requests-cache>=1.1.0
+
+# Job Scheduling
+apscheduler>=3.10.0
+pytz>=2023.3
+
+# Configuration Management
+python-dotenv>=1.0.0
+
+# Development & Testing (Core)
+pytest>=7.4.0
+pytest-cov>=4.0.0
+
+# Logging
+python-json-logger>=2.0.0
