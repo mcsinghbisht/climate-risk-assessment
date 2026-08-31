@@ -9,6 +9,7 @@ Uses the Anthropic SDK to communicate with Claude.
 
 import json
 import logging
+import os
 from typing import Optional, List, Dict, Tuple
 
 # Load .env for API keys
@@ -52,7 +53,16 @@ class ClimateRiskChatAgent:
         self.enable_sql_fallback = enable_sql_fallback and llm_config.get("sql_fallback_enabled", False)
 
         self.mode = mode
-        self.client = Anthropic()
+
+        # Initialize Anthropic client with workspace ID header (if using workspace-scoped API key)
+        api_key = os.getenv("ANTHROPIC_API_KEY")
+        workspace_id = os.getenv("ANTHROPIC_WORKSPACE_ID", "Default")  # Default to "Default" workspace
+
+        default_headers = {}
+        if api_key and "ap103" in api_key:  # Workspace-scoped keys contain "ap103"
+            default_headers["anthropic-workspace-id"] = workspace_id
+
+        self.client = Anthropic(api_key=api_key, default_headers=default_headers)
         self.conversation_history = []
 
         # System prompt depends on mode
